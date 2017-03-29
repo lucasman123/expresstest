@@ -79,6 +79,20 @@ app.post('/file-upload/:year/:month', function(req,res){
   });
 });
 
+app.get('/cookie', function(req,res){
+  res.cookie('username', 'Lucas Larsson', {expire: new Date() + 9999}).send('username has the value of Lucas Larsson.');
+});
+
+app.get('/listcookies', function(req,res){
+  console.log('Cookies: ', req.cookies);
+  res.send('Look in the console for cookies');
+});
+
+app.get('/deletecookie', function(req,res){
+  res.clearCookie('username');
+  res.send('cookied deleted');
+});
+
 app.use(function(req,res) {
   res.type('text/html');
   res.status(404);
